@@ -4,7 +4,7 @@ on:
   schedule:
     # 每天国际标准时间 00:00 和 12:00 各运行一次 (北京时间 08:00 和 20:00)
     - cron: '0 0,12 * * *'
-  workflow_dispatch: # 允许你在 GitHub 页面上手动点击按钮触发运行
+  workflow_dispatch: # 允许在 GitHub 页面上手动点击按钮触发运行
 
 jobs:
   update-nodes:
@@ -14,6 +14,8 @@ jobs:
     # 1. 检出仓库代码
     - name: Checkout Repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # 2. 部署 Python 环境
     - name: Set up Python
@@ -31,11 +33,18 @@ jobs:
     - name: Run Scraper Script
       run: python scraper.py
 
-    # 5. 将更新后的节点文件提交并推送到仓库
+    # 5. 将更新后的节点文件及报告提交并推送到仓库
+    # 使用 if: always() 确保即使第4步脚本报错，这一步也绝对会运行，把报告同步到仓库
     - name: Commit and Push Changes
+      if: always()
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add nodes.txt sub.txt
+        
+        # 检查文件是否存在，防止未生成时报错
+        [ -f nodes.txt ] && git add nodes.txt || echo "nodes.txt not found"
+        [ -f sub.txt ] && git add sub.txt || echo "sub.txt not found"
+        [ -f report.txt ] && git add report.txt || echo "report.txt not found"
+        
         # 只有在文件有变动时才提交，防止空提交报错
-        git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 自动更新节点列表 ($(date +'%Y-%m-%d %H:%M:%S'))" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 自动更新节点列表及诊断报告 ($(date +'%Y-%m-%d %H:%M:%S'))" && git push)
