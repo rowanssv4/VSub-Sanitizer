@@ -1,1 +1,29 @@
-
+==================================================
+📋 运行报告生成时间: 2026-06-19 20:59:24 (北京时间)
+==================================================
+[INFO] 开始请求全网共 11 个节点数据源...
+ -> [01] 探测源: https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub | 状态: 200
+    └── 成功提取标准节点: 20 条
+ -> [02] 探测源: https://wanzhuanmi.cczzuu.top/node/20260619.txt | 状态: 200
+    └── 成功提取标准节点: 20 条
+ -> [03] 探测源: https://oss.oneclash.cc/2026/06/20260619.txt | 状态: 200
+    └── 成功提取标准节点: 14 条
+ -> [04] 探测源: https://wanzhuanmi.cczzuu.top/node/20260618.txt | 状态: 200
+    └── 成功提取标准节点: 18 条
+ -> [05] 探测源: https://oss.oneclash.cc/2026/06/20260618.txt | 状态: 200
+    └── 成功提取标准节点: 14 条
+ -> [06] 探测源: https://raw.githubusercontent.com/shaoyouvip/free/refs/heads/main/base64.txt | 状态: 200
+    └── 成功提取标准节点: 49 条
+ -> [07] 探测源: https://Nmnb6H.tosslk.xyz/54759c411d85fcfc170e8882ec60b863 | 状态: 403
+ -> [08] 探测源: https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt | 状态: 200
+    └── 成功提取标准节点: 489 条
+ -> [09] 探测源: https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt | 状态: 200
+    └── 成功提取标准节点: 500 条
+ -> [10] 探测源: https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt | 状态: 200
+    └── 成功提取标准节点: 500 条
+ -> [11] 探测源: https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt | 状态: 200
+    └── 成功提取标准节点: 500 条
+[INFO] 指纹去重完毕，留存基础节点: 2107 条。
+[INFO] 正在注入首行公告并重新格式化 2107 个节点...
+[INFO] 正在将最终数据写入硬盘...
+[🎉 FINISHED] 自动化管道运行成功。共生成节点 2108 个。
