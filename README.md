@@ -1,6 +1,6 @@
-# NSPFIC — Network Space Proxy Fingerprint Intelligence Collector
+# VSub-Sanitizer — Virtual Network Subscription Automated Sanitizer
 
-[![Automated Workflow](https://github.com/rowanssv4/nspfic/actions/workflows/auto-update.yml/badge.svg)](https://github.com/rowanssv4/nspfic/actions)
+[![Automated Workflow](https://github.com/rowanssv4/VSub-Sanitizer/actions/workflows/auto-update.yml/badge.svg)](https://github.com/rowanssv4/VSub-Sanitizer/actions)
 [![Security Compliance](https://img.shields.io/badge/Security-Strict_Compliance-green.svg)](https://github.com/rowanssv4)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -11,16 +11,16 @@
 
 ## English Version
 
-### What is NSPFIC?
+### What is VSub-Sanitizer?
 
-NSPFIC is a fully automated pipeline that collects public proxy fingerprints scattered across open-source intelligence feeds, cleanses the data, performs ASN (Autonomous System Number) lookups, and outputs structured, labeled datasets (`nodes.txt` / `sub.txt`) — updated on a schedule via GitHub Actions.
+VSub-Sanitizer is a fully automated pipeline that collects public proxy configurations scattered across open-source feeds, cleanses the data, performs ASN (Autonomous System Number) lookups, and outputs structured, labeled datasets (`nodes.txt` / `sub.txt`) — updated on a schedule via GitHub Actions.
 
 ### Features
 
 - ⚡ **Fast** — each run completes in under 25 seconds
 - 🔒 **Rate-limited** — capped at 120 API calls per run to prevent abuse
-- 🧠 **Dual-engine fingerprinting** — online API for top-priority nodes; regex matrix fallback for the rest
-- 🛡️ **AST-level sanitization** — strips malicious redirects and config exploits before persisting data
+- 🧠 **Dual-engine parsing** — online API for top-priority nodes; regex matrix fallback for the rest
+- 🛡️ **Syntax-level sanitization** — strips malicious redirects and config exploits before persisting data
 - 🌍 **ASN enrichment** — tags each proxy with carrier type (`Residential`, `Datacenter`, backbone)
 
 ### Quick Start
@@ -30,13 +30,13 @@ NSPFIC is a fully automated pipeline that collects public proxy fingerprints sca
 Copy the raw `sub.txt` URL into your proxy client's subscription field:
 
 ```
-https://raw.githubusercontent.com/rowanssv4/nspfic/main/sub.txt
+https://raw.githubusercontent.com/rowanssv4/VSub-Sanitizer/main/sub.txt
 ```
 
 Or grab `nodes.txt` for a plain-text node list:
 
 ```
-https://raw.githubusercontent.com/rowanssv4/nspfic/main/nodes.txt
+https://raw.githubusercontent.com/rowanssv4/VSub-Sanitizer/main/nodes.txt
 ```
 
 > The files are auto-updated by GitHub Actions — just re-fetch the URL to get the latest nodes.
@@ -47,8 +47,8 @@ https://raw.githubusercontent.com/rowanssv4/nspfic/main/nodes.txt
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/rowanssv4/nspfic.git
-cd nspfic
+git clone https://github.com/rowanssv4/VSub-Sanitizer.git
+cd VSub-Sanitizer
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -58,7 +58,7 @@ python scraper.py
 ```
 
 Output files:
-- `nodes.txt` — plain-text proxy list with fingerprint labels
+- `nodes.txt` — plain-text proxy list with routing metadata labels
 - `sub.txt` — subscription-format output
 - `report.txt` — run summary and stats
 
@@ -76,7 +76,7 @@ Open-source feeds
   └── Remaining nodes → Offline regex matrix (fast classification)
       │
       ▼
-  AST Sanitization (strip malicious payloads)
+  Syntax Sanitization (strip malicious payloads)
       │
       ▼
   Structured Output (nodes.txt / sub.txt)
@@ -107,15 +107,15 @@ This repository operates in strict compliance with [GitHub's Terms of Service](h
 
 ### 這是什麼？
 
-NSPFIC 是一個全自動的代理指紋情報收集流水線。它從公開的開源情報源中採集散落的代理節點，進行清洗、去重、ASN 歸屬反查，最終輸出帶有載體標籤的結構化資料集（`nodes.txt` / `sub.txt`），並透過 GitHub Actions 定時自動更新。
+VSub-Sanitizer 是一個全自動的代理訂閱格式清洗流水線。它從公開的開源渠道中採集散落的代理配置，進行清洗、去重、ASN 歸屬反查，最終輸出帶有載體標籤的結構化資料集（`nodes.txt` / `sub.txt`），並透過 GitHub Actions 定時自動更新。
 
 ### 功能特色
 
 - ⚡ **高速** — 單次全流程執行嚴格控制在 25 秒以內
 - 🔒 **防濫用熔斷** — 線上 API 查詢硬性上限 120 次/次，杜絕資源濫用
-- 🧠 **雙引擎混合指紋** — 高優先節點走線上 API 精查，後備節點走本地正則矩陣秒級分類
-- 🛡️ **AST 安全前置過濾** — 序列化前攔截並剔除惡意 HTML 導向與異常設定偽裝
-- 🌍 **ASN 情報富化** — 為每個代理標記載體類型（住宅 / 機房 / 主干網骨幹）
+- 🧠 **雙引擎混合解析** — 高優先節點走線上 API 精查，後備節點走本地正則矩陣秒級分類
+- 🛡️ **語法安全前置過濾** — 序列化前攔截並剔除惡意 HTML 導向與異常設定偽裝
+- 🌍 **ASN 路由富化** — 為每個代理標記載體類型（住宅 / 機房 / 主干網骨幹）
 
 ### 快速開始
 
@@ -124,13 +124,13 @@ NSPFIC 是一個全自動的代理指紋情報收集流水線。它從公開的�
 將以下連結直接貼入你的代理客戶端訂閱欄位：
 
 ```
-https://raw.githubusercontent.com/rowanssv4/nspfic/main/sub.txt
+https://raw.githubusercontent.com/rowanssv4/VSub-Sanitizer/main/sub.txt
 ```
 
 或使用純文字節點列表：
 
 ```
-https://raw.githubusercontent.com/rowanssv4/nspfic/main/nodes.txt
+https://raw.githubusercontent.com/rowanssv4/VSub-Sanitizer/main/nodes.txt
 ```
 
 > 文件由 GitHub Actions 定時自動更新，重新拉取 URL 即可獲取最新節點。
@@ -141,8 +141,8 @@ https://raw.githubusercontent.com/rowanssv4/nspfic/main/nodes.txt
 
 ```bash
 # 1. 克隆倉庫
-git clone https://github.com/rowanssv4/nspfic.git
-cd nspfic
+git clone https://github.com/rowanssv4/VSub-Sanitizer.git
+cd VSub-Sanitizer
 
 # 2. 安裝依賴
 pip install -r requirements.txt
@@ -152,14 +152,14 @@ python scraper.py
 ```
 
 輸出文件說明：
-- `nodes.txt` — 帶指紋標籤的明文代理列表
+- `nodes.txt` — 帶路由標籤的明文代理列表
 - `sub.txt` — 訂閱格式輸出
 - `report.txt` — 本次執行摘要與統計
 
 ### 運作流程
 
 ```
-開源情報源
+開源數據源
     │
     ▼
   採集 & 去重
@@ -170,7 +170,7 @@ python scraper.py
   └── 其餘節點 → 本地輕量 Regex 矩陣（秒級分類）
     │
     ▼
-  AST 安全過濾（攔截惡意載荷）
+  語法安全過濾（攔截惡意載荷）
     │
     ▼
   結構化輸出（nodes.txt / sub.txt）
